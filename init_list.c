@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:08:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2024/12/18 10:40:52 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2024/12/31 10:48:11 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,27 @@
 
 void	append_node(c_list **list, int n)
 {
-	
+	c_list	*node;
+	c_list	*last_node;
+
+	if (!list)
+		return ;
+	node = malloc(sizeof(c_list));
+	if (!node)
+		return ;
+	node->next = NULL;
+	node->nbr = n;
+	if (!(*list))
+	{
+		*list = node;
+		node->prev = NULL;
+	}
+	else
+	{
+		last_node = find_last(*list);
+		last_node->next = node;
+		node->prev = last_node;
+	}
 }
 
 void	init_list_a(c_list **list, char **argv)
