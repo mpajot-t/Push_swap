@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:40:12 by mpajot-t          #+#    #+#             */
-/*   Updated: 2024/12/17 11:05:45 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2024/12/31 10:47:19 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	error_dup(c_list *list, int nb)
 	i = 0;
 	while(list != NULL)
 	{
-		if(list->data == nb)
+		if(list->nbr == nb)
 			i++;
 	}
 	if (i >= 2)
