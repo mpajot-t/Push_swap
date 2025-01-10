@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:08:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2024/12/31 10:48:11 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:48:54 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	append_node(c_list **list, int n)
 	}
 	else
 	{
-		last_node = find_last(*list);
+		last_node = get_list_end(*list);
 		last_node->next = node;
 		node->prev = last_node;
 	}
@@ -46,12 +46,12 @@ void	init_list_a(c_list **list, char **argv)
 	while (argv[i])
 	{
 		if (error_format(argv[i]))
-			free_errors(list);
+			lstclear(list);
 		n = ft_atoi(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_errors(list);
+			lstclear(list);
 		if (error_dup(*list, n))
-			free_errors(list);
+			lstclear(list);
 		append_node(list, n);
 		i++;
 	}

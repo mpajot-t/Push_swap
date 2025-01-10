@@ -6,11 +6,25 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:11:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2024/12/18 10:38:32 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:46:24 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	lstclear(c_list **lst)
+{
+	c_list	*temp;
+
+	if (!lst || !*lst)
+		return ;
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		free(*lst);
+		*lst = temp;
+	}
+}
 
 int	lst_len(c_list *list)
 {
@@ -58,4 +72,13 @@ int	get_min_node(c_list *list)
 		temp->next;
 	}
 	return (min);
+}
+
+c_list	*get_list_end(c_list *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst && lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

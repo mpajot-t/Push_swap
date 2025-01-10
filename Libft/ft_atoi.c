@@ -6,15 +6,15 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:01:58 by mpajot-t          #+#    #+#             */
-/*   Updated: 2024/11/10 09:47:49 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:52:42 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	signe;
-	int	nb;
+	int		i;
+	int		signe;
+	long	nb;
 
 	nb = 0;
 	i = 0;

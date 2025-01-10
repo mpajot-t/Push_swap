@@ -1,42 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_errors.c                                     :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 09:40:12 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/10 10:39:01 by mpajot-t         ###   ########.fr       */
+/*   Created: 2025/01/10 10:55:46 by mpajot-t          #+#    #+#             */
+/*   Updated: 2025/01/10 10:59:07 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	error_dup(c_list *list, int nb)
+int	check_sorted(c_list *lst)
 {
-	int	i;
-
-	i = 0;
-	while(list != NULL)
+	if(!lst)
+		return (NULL);
+	while(lst)
 	{
-		if(list->nbr == nb)
-			i++;
-	}
-	if (i >= 2)
-		return (0);
-	else
-		return (1);
-}
-
-int	error_format(char *c)
-{
-	int	i;
-
-	i = 0;
-	while(c[i])
-	{
-		if (c[i] <= 47 || c[i] >= 58 || c[i] != '+' || c[i] != '-')
+		if (lst->nbr > lst->next->nbr)
 			return (0);
+		lst->next;
 	}
 	return (1);
 }
