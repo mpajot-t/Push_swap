@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:47:00 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/09 10:34:34 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/13 10:19:44 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	rotate(c_list **a)
 	end->next = temp;
 }
 
-void	rr(c_list *a, c_list *b)
+void	rr(c_list **a, c_list **b)
 {
-	
+	rotate(a);
+	rotate(b);
 }
