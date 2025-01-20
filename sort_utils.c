@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:46 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/14 10:13:12 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:05:41 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	sort_three(c_list **a)
 
 	biggest_node = get_max_node(*a);
 	if (biggest_node == (*a)->nbr)
-		rotate(a);
+		ra(a);
 	else if ((*a)->next == biggest_node)
-		reverse_rotate(a);
+		rra(a);
 	if ((*a)->nbr > (*a)->next->nbr)
-		swap(*a);
+		sa(*a);
 }

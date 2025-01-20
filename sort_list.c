@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:24:35 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 10:58:21 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:04:08 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	sort_list(c_list **a, c_list **b)
 
 	len_a = lst_len(*a);
 	if (len_a-- > 3 && !check_sorted(*a))
-		push(b, a);
+		pb(b, a);
 	if (len_a-- > 3 && !check_sorted(*a))
-		push(b, a);
+		pb(b, a);
 	while (len_a-- > 3 && !check_sorted(*a))
 	{
 		init_nodes_a(*a, *b);

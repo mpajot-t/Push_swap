@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:50:14 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/10 11:02:20 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 11:04:21 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 	if (!check_sorted(a))
 	{
 		if (lst_len(a) == 2)
-			swap(&a);
+			sa(&a);
 		else if (lst_len == 3)
 			sort_three(&a);
 		else
