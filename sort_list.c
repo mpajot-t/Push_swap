@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:24:35 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/16 10:57:57 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:39:16 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ static void	move_b_to_a(c_list **a, c_list **b)
 
 static void	min_on_top(c_list **a)
 {
-	while ((*a)->nbr != )
+	while ((*a)->nbr != get_min_node(*a)->nbr)
 	{
-		if (get_min)
+		if (get_min_node(*a)->above_median)
+			ra(a);
+		else
+			rra(a);
 	}
 }
+
 void	sort_list(c_list **a, c_list **b)
 {
 	int	len_a;

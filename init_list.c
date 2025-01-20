@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:08:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/10 10:48:54 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:17:07 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,39 @@ void	init_list_a(c_list **list, char **argv)
 			lstclear(list);
 		append_node(list, n);
 		i++;
+	}
+}
+
+c_list	*get_cheapest(c_list *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst)
+	{
+		if (lst->cheapest)
+			return (lst);
+		lst = lst->next;
+	}
+	return (NULL);
+}
+
+void	prep_for_push(c_list **lst, c_list *top_node, char lst_name)
+{
+	while (*lst != top_node)
+	{
+		if (lst_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(lst);
+			else
+				rra(lst);
+		}
+		else if (lst_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(lst);
+			else
+				rrb(lst);
+		}
 	}
 }

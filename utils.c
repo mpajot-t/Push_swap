@@ -6,25 +6,11 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:11:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/10 10:46:24 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:35:45 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	lstclear(c_list **lst)
-{
-	c_list	*temp;
-
-	if (!lst || !*lst)
-		return ;
-	while (*lst)
-	{
-		temp = (*lst)->next;
-		free(*lst);
-		*lst = temp;
-	}
-}
 
 int	lst_len(c_list *list)
 {
@@ -38,40 +24,44 @@ int	lst_len(c_list *list)
 	return(i);
 }
 
-int	get_max_node(c_list *list)
-{
-	c_list *temp;
-	int max;
-
-	if (list == NULL)
-		return (NULL);
-	temp = list;
-	max = INT_MIN;
-	while (temp != NULL)
-	{
-		if (temp->nbr > max)
-			max = temp->nbr;
-		temp->next;
-	}
-	return (max);
-}
-
-int	get_min_node(c_list *list)
+c_list	*get_max_node(c_list *lst)
 {
 	c_list *temp;
 	int min;
 
-	if (list == NULL)
+	if (lst == NULL)
 		return (NULL);
-	temp = list;
-	min = INT_MAX;
-	while (temp != NULL)
+	min = INT_MIN;
+	while (lst)
 	{
-		if (temp->nbr < min)
-			min = temp->nbr;
-		temp->next;
+		if (lst->nbr > min)
+		{
+			min = lst->nbr;
+			temp = lst;
+		}
+		lst = lst->next;
 	}
-	return (min);
+	return (temp);
+}
+
+c_list	*get_min_node(c_list *lst)
+{
+	c_list *temp;
+	int min;
+
+	if (lst == NULL)
+		return (NULL);
+	min = INT_MAX;
+	while (lst)
+	{
+		if (lst->nbr < min)
+		{
+			min = lst->nbr;
+			temp = lst;
+		}
+		lst = lst->next;
+	}
+	return (temp);
 }
 
 c_list	*get_list_end(c_list *lst)
