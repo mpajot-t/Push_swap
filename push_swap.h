@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:50:11 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 10:36:16 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:50:29 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ int	check_sorted(c_list *lst);
 void	lstclear(c_list **lst);
 int	lst_len(c_list *list);
 
-// Operations
-void	swap(c_list *lst);
-void	ss(c_list **a, c_list **b);
-void	push(c_list **a, c_list **b);
-void	rotate(c_list **a);
-void	rr(c_list **a, c_list **b);
-void	reverse_rotate(c_list **a);
+// Commands
+void	pa(c_list **src, c_list **dest);
+void	pb(c_list **src, c_list **dest);
+void	rra(c_list **a);
+void	rrb(c_list **a);
 void	rrr(c_list **a, c_list **b);
-
+void	ra(c_list **a);
+void	rb(c_list **a);
+void	rr(c_list **a, c_list **b);
+void	sa(c_list *lst);
+void	sb(c_list *lst);
+void	ss(c_list **a, c_list **b);
 
 void	sort_three(c_list **a);
 void	current_index(c_list *lst);

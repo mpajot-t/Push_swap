@@ -6,11 +6,27 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:24:35 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 10:39:16 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:58:21 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	rotate_both(c_list **a, c_list **b, c_list *cheapest_node)
+{
+	while (*b != cheapest_node->target_node && *a != cheapest_node)
+		rr(a, b);
+	current_index(*a);
+	current_index(*b);
+}
+
+static void	rev_rotate_both(c_list **a, c_list **b, c_list *cheapest_node)
+{
+	while (*b != cheapest_node->target_node && *a != cheapest_node)
+		rrr(a, b);
+	current_index(*a);
+	current_index(*b);
+}
 
 static void	move_a_to_b(c_list **a, c_list **b)
 {
@@ -18,18 +34,18 @@ static void	move_a_to_b(c_list **a, c_list **b)
 
 	cheapest_node = get_min_node(*a);
 	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
-		rr(a, b);
+		rotate_both(a, b, cheapest_node);
 	else if (!(cheapest_node->above_median) && !(cheapest_node->target_node->above_median))
-		rrr(a, b);
+		rev_rotate_both(a, b, cheapest_node);
 	prep_for_push(a, cheapest_node, 'a');
 	prep_for_push(b, cheapest_node->target_node, 'b');
-	push(b, a);
+	pb(b, a);
 }
 
 static void	move_b_to_a(c_list **a, c_list **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
-	push(a, b);
+	pa(a, b);
 }
 
 static void	min_on_top(c_list **a)
