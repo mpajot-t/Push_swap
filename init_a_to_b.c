@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:41:20 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/16 09:57:14 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:05:13 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,20 @@ void	set_cheapest(c_list *lst)
 
 void	init_nodes_a(c_list *a, c_list *b)
 {
+	c_list *temp = a;
+    while (temp)
+    {
+        temp->cheapest = false;
+        temp = temp->next;
+    }
+
 	current_index(a);
 	current_index(b);
 	set_target_a(a, b);
 	cost_analysis_a(a, b);
 	set_cheapest(a);
+
+	ft_printf("After init_nodes_a:\n");
+    print_stack(a, "A");
+    print_stack(b, "B");
 }

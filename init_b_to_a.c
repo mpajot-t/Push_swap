@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 10:03:02 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 10:08:01 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:41:11 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	set_target_b(c_list *a, c_list*b)
 
 	while (b)
 	{
+		ft_printf("Processing node in B: %d\n", b->nbr);
 		best_match_index = LONG_MAX;
 		current_a = a;
 		while (current_a)
@@ -32,9 +33,10 @@ static void	set_target_b(c_list *a, c_list*b)
 			current_a = current_a->next;
 		}
 		if (best_match_index == LONG_MAX)
-			b->target_node = find_min(a);
+			b->target_node = get_min_node(a);
 		else
 			b->target_node = target_node;
+		ft_printf("Node in B: %d -> Target: %d\n", b->nbr, b->target_node->nbr);
 		b = b->next;
 	}
 }

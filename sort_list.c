@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:24:35 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 11:04:08 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/24 10:37:53 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ static void	move_a_to_b(c_list **a, c_list **b)
 	c_list	*cheapest_node;
 
 	cheapest_node = get_min_node(*a);
+	ft_printf("Cheapest node: %d, Target node: %d\n", cheapest_node->nbr, cheapest_node->target_node->nbr);
 	if (cheapest_node->above_median && cheapest_node->target_node->above_median)
 		rotate_both(a, b, cheapest_node);
 	else if (!(cheapest_node->above_median) && !(cheapest_node->target_node->above_median))
 		rev_rotate_both(a, b, cheapest_node);
 	prep_for_push(a, cheapest_node, 'a');
 	prep_for_push(b, cheapest_node->target_node, 'b');
-	pb(b, a);
+	pb(a, b);
 }
 
 static void	move_b_to_a(c_list **a, c_list **b)
@@ -65,15 +66,19 @@ void	sort_list(c_list **a, c_list **b)
 
 	len_a = lst_len(*a);
 	if (len_a-- > 3 && !check_sorted(*a))
-		pb(b, a);
+		pb(a, b);
 	if (len_a-- > 3 && !check_sorted(*a))
-		pb(b, a);
+		pb(a, b);
 	while (len_a-- > 3 && !check_sorted(*a))
 	{
 		init_nodes_a(*a, *b);
 		move_a_to_b(a, b);
+		print_stack(*a, "A");
+		print_stack(*b, "B");
 	}
 	sort_three(a);
+	print_stack(*a, "A");
+	print_stack(*b, "B");
 	while (*b)
 	{
 		init_nodes_b(*a, *b);

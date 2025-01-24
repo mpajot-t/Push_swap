@@ -2,11 +2,23 @@
 NAME = push_swap
 LIBFT_DIR = ./Libft
 FT_PRINTF_DIR = ./printf
-CC = cc
+CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
 
 # Source files for server and client
-SRCS = server.c
+SRCS = ./commands/push.c \
+	   ./commands/reverse_rotate.c \
+	   ./commands/rotate.c \
+	   ./commands/swap.c \
+	   check_errors.c \
+	   init_a_to_b.c \
+	   init_b_to_a.c \
+	   init_list.c \
+	   push_swap.c \
+	   sort_list.c \
+	   sort_utils.c \
+	   split.c \
+	   utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -17,29 +29,34 @@ FT_PRINTF = $(FT_PRINTF_DIR)/libftprintf.a
 # Rules
 all: $(LIBFT) $(FT_PRINTF) $(NAME)
 
-# Build server
+# Build push_swap
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(FT_PRINTF_DIR) -lftprintf -o $(NAME)
+	@echo "\033[1;32m [OK] \033[0m	\033[1;35m push_swap built successfully!\033[0m"
+	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(FT_PRINTF_DIR) -lftprintf -o $(NAME)
 
 # Build libft library
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -s -C $(LIBFT_DIR)
+	@echo "\033[1;32m [OK] \033[0m	\033[1;35m libft built successfully!\033[0m"
 
 # Build ft_printf library
 $(FT_PRINTF):
-	$(MAKE) -C $(FT_PRINTF_DIR)
+	@$(MAKE) -s -C $(FT_PRINTF_DIR)
+	@echo "\033[1;32m [OK] \033[0m	\033[1;35m ft_printf built successfully!\033[0m"
 
 # Clean object files
 clean:
-	rm -f $(OBJS) $(OBJS)
-	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(FT_PRINTF_DIR) clean
+	@echo "\033[1;32m [OK] \033[0m	\033[1;35m removing object files...\033[0m"
+	@rm -f $(OBJS)
+	@$(MAKE) -s -C $(LIBFT_DIR) clean
+	@$(MAKE) -s -C $(FT_PRINTF_DIR) clean
 
 # Clean everything (including compiled libraries and binaries)
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(FT_PRINTF_DIR) fclean
+	@echo "\033[1;32m [OK] \033[0m	\033[1;35m removing binary and libraries...\033[0m"
+	@rm -f $(NAME)
+	@$(MAKE) -s -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s -C $(FT_PRINTF_DIR) fclean
 
 # Rebuild everything
 re: fclean all

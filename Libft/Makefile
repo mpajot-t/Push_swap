@@ -1,6 +1,6 @@
 # Variables
 NAME = libft.a            
-CC = cc
+CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
 SRC = ft_atoi.c \
 	ft_bzero.c \

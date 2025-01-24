@@ -6,11 +6,32 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:08:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 10:17:07 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:46:03 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static long	ft_atol(const char *s)
+{
+	long	result;
+	int		sign;
+
+	result = 0;
+	sign = 1; 
+	while (*s == ' ' || *s == '\t' || *s == '\n' || \
+			*s == '\r' || *s == '\f' || *s == '\v')
+		s++;
+	if (*s == '-' || *s == '+')
+	{
+		if (*s == '-')
+			sign = -1;
+		s++;
+	}
+	while (ft_isdigit(*s))
+		result = result * 10 + (*s++ - '0');
+	return (result * sign);
+}
 
 void	append_node(c_list **list, int n)
 {
@@ -24,6 +45,7 @@ void	append_node(c_list **list, int n)
 		return ;
 	node->next = NULL;
 	node->nbr = n;
+	node->cheapest = 0;
 	if (!(*list))
 	{
 		*list = node;
@@ -46,12 +68,12 @@ void	init_list_a(c_list **list, char **argv)
 	while (argv[i])
 	{
 		if (error_format(argv[i]))
-			lstclear(list);
-		n = ft_atoi(argv[i]);
+			free_lst(list);
+		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			lstclear(list);
-		if (error_dup(*list, n))
-			lstclear(list);
+			free_lst(list);
+		if (error_dup(*list, (int)n))
+			free_lst(list);
 		append_node(list, n);
 		i++;
 	}

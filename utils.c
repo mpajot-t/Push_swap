@@ -6,21 +6,24 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:11:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 10:35:45 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:03:25 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	lst_len(c_list *list)
+int	lst_len(c_list *lst)
 {
 	int	i;
 
 	i = 0;
-	if (!list)
+	if (!lst)
 		return(0);
-	while (list != NULL)
+	while (lst)
+	{
+		lst = lst->next;
 		i++;
+	}
 	return(i);
 }
 
@@ -69,6 +72,13 @@ c_list	*get_list_end(c_list *lst)
 	if (!lst)
 		return (NULL);
 	while (lst && lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
+
+c_list	*get_list_before_end(c_list *lst)
+{
+	while (lst && lst->next && lst->next->next != NULL)
 		lst = lst->next;
 	return (lst);
 }

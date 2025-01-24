@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:40:12 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 10:22:33 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/22 10:52:33 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 int	error_dup(c_list *list, int nb)
 {
-	int	i;
-
-	i = 0;
-	while(list != NULL)
+	if (!list)
+		return (0);
+	while(list)
 	{
 		if(list->nbr == nb)
-			i++;
+			return (1);
+		list = list->next;
 	}
-	if (i >= 2)
-		return (0);
-	else
-		return (1);
+	return (0);
 }
 
 int	error_format(char *c)
@@ -44,15 +41,22 @@ int	error_format(char *c)
 void	free_lst(c_list **lst)
 {
 	c_list	*temp;
-	c_list *current;
+	c_list	*current;
 
 	if (!lst)
 		return ;
 	current = *lst;
-	while (*lst)
+	while (current)
 	{
-		temp = (current)->next;
+		temp = current->next;
+		current->next = NULL;
+		current->prev = NULL;
+		current->target_node = NULL;  // Important!
 		current->nbr = 0;
+		current->index = 0;
+		current->push_cost = 0;
+		current->above_median = false;
+		current->cheapest = false;
 		free(current);
 		current = temp;
 	}

@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:50:11 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 10:50:29 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/23 10:36:44 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct t_list
 
 //List utils
 c_list	*get_list_end(c_list *lst);
+c_list	*get_list_before_end(c_list *lst);
 c_list	*get_cheapest(c_list *lst);
 c_list	*get_max_node(c_list *lst);
 c_list	*get_min_node(c_list *lst);
@@ -42,11 +43,12 @@ int	error_format(char *c);
 void	free_errors(c_list **a);
 
 //...
-int	check_sorted(c_list *list);
 void	init_list_a(c_list **list, char **argv);
-int	check_sorted(c_list *lst);
+bool	check_sorted(c_list *lst);
 void	lstclear(c_list **lst);
-int	lst_len(c_list *list);
+int	lst_len(c_list *lst);
+char	**split(char *s, char c);
+void	print_stack(c_list *stack, char *name);
 
 // Commands
 void	pa(c_list **src, c_list **dest);
@@ -57,8 +59,8 @@ void	rrr(c_list **a, c_list **b);
 void	ra(c_list **a);
 void	rb(c_list **a);
 void	rr(c_list **a, c_list **b);
-void	sa(c_list *lst);
-void	sb(c_list *lst);
+void	sa(c_list **lst);
+void	sb(c_list **lst);
 void	ss(c_list **a, c_list **b);
 
 void	sort_three(c_list **a);
