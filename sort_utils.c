@@ -6,27 +6,28 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:46 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/23 10:36:30 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:58:14 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(c_list *stack, char *name) 
+void	print_stack(t_list_node *stack, char *name)
 {
 	ft_printf("%s stack: ", name);
-	while (stack) {
+	while (stack)
+	{
 		ft_printf("%d ", stack->nbr);
 		stack = stack->next;
 	}
 	ft_printf("\n");
 }
 
-bool	check_sorted(c_list *lst)
+bool	check_sorted(t_list_node *lst)
 {
-	if(!lst)
+	if (!lst)
 		return (1);
-	while(lst->next)
+	while (lst->next)
 	{
 		if (lst->nbr > lst->next->nbr)
 			return (false);
@@ -35,9 +36,9 @@ bool	check_sorted(c_list *lst)
 	return (true);
 }
 
-void	sort_three(c_list **a)
+void	sort_three(t_list_node **a)
 {
-	c_list *biggest_node;
+	t_list_node	*biggest_node;
 
 	biggest_node = get_max_node(*a);
 	if (biggest_node == *a)

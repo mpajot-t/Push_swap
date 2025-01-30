@@ -6,19 +6,19 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:40:12 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/22 10:52:33 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:39:01 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	error_dup(c_list *list, int nb)
+int	error_dup(t_list_node *list, int nb)
 {
 	if (!list)
 		return (0);
-	while(list)
+	while (list)
 	{
-		if(list->nbr == nb)
+		if (list->nbr == nb)
 			return (1);
 		list = list->next;
 	}
@@ -30,18 +30,23 @@ int	error_format(char *c)
 	int	i;
 
 	i = 0;
-	while(c[i])
+	if (!(c[i] == '+' || c[i] == '-' || (c[i] >= '0' && c[i] <= '9')))
+		return (1);
+	if ((c[i] == '+' || c[i] == '-') && !(c[1] >= '0' && c[1] <= '9'))
+		return (1);
+	while (c[i])
 	{
-		if (c[i] <= 47 || c[i] >= 58 || c[i] != '+' || c[i] != '-')
-			return (0);
+		if (!(c[i] >= '0' && c[i] <= '9'))
+			return (1);
+		i++;
 	}
-	return (1);
+	return (0);
 }
 
-void	free_lst(c_list **lst)
+void	free_lst(t_list_node **lst)
 {
-	c_list	*temp;
-	c_list	*current;
+	t_list_node	*temp;
+	t_list_node	*current;
 
 	if (!lst)
 		return ;
@@ -49,21 +54,14 @@ void	free_lst(c_list **lst)
 	while (current)
 	{
 		temp = current->next;
-		current->next = NULL;
-		current->prev = NULL;
-		current->target_node = NULL;  // Important!
 		current->nbr = 0;
-		current->index = 0;
-		current->push_cost = 0;
-		current->above_median = false;
-		current->cheapest = false;
 		free(current);
 		current = temp;
 	}
 	*lst = NULL;
 }
 
-void	free_errors(c_list **a)
+void	free_errors(t_list_node **a)
 {
 	free_lst(a);
 	ft_printf("Error\n");

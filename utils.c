@@ -6,77 +6,77 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:11:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/20 12:03:25 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:59:04 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	lst_len(c_list *lst)
+int	lst_len(t_list_node *lst)
 {
 	int	i;
 
 	i = 0;
 	if (!lst)
-		return(0);
+		return (0);
 	while (lst)
 	{
 		lst = lst->next;
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
-c_list	*get_max_node(c_list *lst)
+t_list_node	*get_max_node(t_list_node *lst)
 {
-	c_list *temp;
-	int min;
+	t_list_node	*max_node;
+	long		max;
 
-	if (lst == NULL)
+	if (!lst)
 		return (NULL);
-	min = INT_MIN;
+	max = LONG_MIN;
 	while (lst)
 	{
-		if (lst->nbr > min)
+		if (lst->nbr > max)
 		{
-			min = lst->nbr;
-			temp = lst;
+			max = lst->nbr;
+			max_node = lst;
 		}
 		lst = lst->next;
 	}
-	return (temp);
+	return (max_node);
 }
 
-c_list	*get_min_node(c_list *lst)
+t_list_node	*get_min_node(t_list_node *lst)
 {
-	c_list *temp;
-	int min;
+	t_list_node	*min_node;
+	long		min;
 
-	if (lst == NULL)
+	if (!lst)
 		return (NULL);
-	min = INT_MAX;
+	min = LONG_MAX;
 	while (lst)
 	{
 		if (lst->nbr < min)
 		{
 			min = lst->nbr;
-			temp = lst;
+			min_node = lst;
 		}
 		lst = lst->next;
 	}
-	return (temp);
+	return (min_node);
 }
 
-c_list	*get_list_end(c_list *lst)
+t_list_node	*get_list_end(t_list_node *lst)
 {
 	if (!lst)
 		return (NULL);
-	while (lst && lst->next != NULL)
+	while (lst->next)
 		lst = lst->next;
 	return (lst);
 }
 
-c_list	*get_list_before_end(c_list *lst)
+t_list_node	*get_list_before_end(t_list_node *lst)
 {
 	while (lst && lst->next && lst->next->next != NULL)
 		lst = lst->next;

@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:08:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/21 09:46:03 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:39:01 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static long	ft_atol(const char *s)
 	int		sign;
 
 	result = 0;
-	sign = 1; 
+	sign = 1;
 	while (*s == ' ' || *s == '\t' || *s == '\n' || \
 			*s == '\r' || *s == '\f' || *s == '\v')
 		s++;
@@ -33,14 +33,14 @@ static long	ft_atol(const char *s)
 	return (result * sign);
 }
 
-void	append_node(c_list **list, int n)
+void	append_node(t_list_node **list, int n)
 {
-	c_list	*node;
-	c_list	*last_node;
+	t_list_node	*node;
+	t_list_node	*last_node;
 
 	if (!list)
 		return ;
-	node = malloc(sizeof(c_list));
+	node = malloc(sizeof(t_list_node));
 	if (!node)
 		return ;
 	node->next = NULL;
@@ -59,7 +59,7 @@ void	append_node(c_list **list, int n)
 	}
 }
 
-void	init_list_a(c_list **list, char **argv)
+void	init_list_a(t_list_node **list, char **argv)
 {
 	long	n;
 	int		i;
@@ -68,18 +68,18 @@ void	init_list_a(c_list **list, char **argv)
 	while (argv[i])
 	{
 		if (error_format(argv[i]))
-			free_lst(list);
+			free_errors(list);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_lst(list);
+			free_errors(list);
 		if (error_dup(*list, (int)n))
-			free_lst(list);
-		append_node(list, n);
+			free_errors(list);
+		append_node(list, (int)n);
 		i++;
 	}
 }
 
-c_list	*get_cheapest(c_list *lst)
+t_list_node	*get_cheapest(t_list_node *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -92,7 +92,7 @@ c_list	*get_cheapest(c_list *lst)
 	return (NULL);
 }
 
-void	prep_for_push(c_list **lst, c_list *top_node, char lst_name)
+void	prep_for_push(t_list_node **lst, t_list_node *top_node, char lst_name)
 {
 	while (*lst != top_node)
 	{

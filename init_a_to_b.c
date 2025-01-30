@@ -6,13 +6,13 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 11:41:20 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/23 11:05:13 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:48:45 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	current_index(c_list *lst)
+void	current_index(t_list_node *lst)
 {
 	int	i;
 	int	median;
@@ -33,11 +33,11 @@ void	current_index(c_list *lst)
 	}
 }
 
-static void	set_target_a(c_list *a, c_list *b)
+static void	set_target_a(t_list_node *a, t_list_node *b)
 {
-	c_list	*current_b;
-	c_list	*target_node;
-	long	best_match_index;
+	t_list_node	*current_b;
+	t_list_node	*target_node;
+	long		best_match_index;
 
 	while (a)
 	{
@@ -60,7 +60,7 @@ static void	set_target_a(c_list *a, c_list *b)
 	}
 }
 
-static void	cost_analysis_a(c_list *a, c_list *b)
+static void	cost_analysis_a(t_list_node *a, t_list_node *b)
 {
 	int	len_a;
 	int	len_b;
@@ -80,10 +80,10 @@ static void	cost_analysis_a(c_list *a, c_list *b)
 	}
 }
 
-void	set_cheapest(c_list *lst)
+void	set_cheapest(t_list_node *lst)
 {
-	long	cheapest_value;
-	c_list	*cheapest_node;
+	long		cheapest_value;
+	t_list_node	*cheapest_node;
 
 	if (!lst)
 		return ;
@@ -100,22 +100,11 @@ void	set_cheapest(c_list *lst)
 	cheapest_node->cheapest = true;
 }
 
-void	init_nodes_a(c_list *a, c_list *b)
+void	init_nodes_a(t_list_node *a, t_list_node *b)
 {
-	c_list *temp = a;
-    while (temp)
-    {
-        temp->cheapest = false;
-        temp = temp->next;
-    }
-
 	current_index(a);
 	current_index(b);
 	set_target_a(a, b);
 	cost_analysis_a(a, b);
 	set_cheapest(a);
-
-	ft_printf("After init_nodes_a:\n");
-    print_stack(a, "A");
-    print_stack(b, "B");
 }

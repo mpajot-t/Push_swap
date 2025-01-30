@@ -6,16 +6,16 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:50:14 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/21 09:59:59 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/30 11:01:12 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	c_list	*a;
-	c_list	*b;
+	t_list_node	*a;
+	t_list_node	*b;
 
 	a = NULL;
 	b = NULL;

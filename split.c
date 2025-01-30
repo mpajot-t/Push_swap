@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:38:04 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/09 09:53:38 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:58:28 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	count_words(char *s, char c)
 {
-	int	count;
+	int		count;
 	bool	inside_word;
 
 	count = 0;
