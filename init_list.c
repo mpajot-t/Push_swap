@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 10:08:13 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/30 10:39:01 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/03/18 10:58:11 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,21 @@ void	append_node(t_list_node **list, int n)
 	}
 }
 
-void	init_list_a(t_list_node **list, char **argv)
+void	init_list_a(t_list_node **list, char **argv, int argc)
 {
 	long	n;
 	int		i;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		if (error_format(argv[i]))
-			free_errors(list);
+			free_errors(list, argv, argc);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)
-			free_errors(list);
+			free_errors(list, argv, argc);
 		if (error_dup(*list, (int)n))
-			free_errors(list);
+			free_errors(list, argv, argc);
 		append_node(list, (int)n);
 		i++;
 	}

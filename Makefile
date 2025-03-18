@@ -27,20 +27,22 @@ LIBFT = $(LIBFT_DIR)/libft.a
 FT_PRINTF = $(FT_PRINTF_DIR)/libftprintf.a
 
 # Rules
-all: $(LIBFT) $(FT_PRINTF) $(NAME)
+all: $(NAME)
 
 # Build push_swap
-$(NAME): $(OBJS)
+$(NAME): Libft/libft.a printf/libftprintf.a $(OBJS)
 	@echo "\033[1;32m [OK] \033[0m	\033[1;35m push_swap built successfully!\033[0m"
 	@$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -L$(FT_PRINTF_DIR) -lftprintf -o $(NAME)
 
 # Build libft library
-$(LIBFT):
+Libft/libft.a:
+	@echo "\033[1;93m [WAIT]\033[0m\t\033[1;35m libft is being built...\033[0m"
 	@$(MAKE) -s -C $(LIBFT_DIR)
 	@echo "\033[1;32m [OK] \033[0m	\033[1;35m libft built successfully!\033[0m"
 
 # Build ft_printf library
-$(FT_PRINTF):
+printf/libftprintf.a:
+	@echo "\033[1;93m [WAIT]\033[0m\t\033[1;35m printf is being built...\033[0m"
 	@$(MAKE) -s -C $(FT_PRINTF_DIR)
 	@echo "\033[1;32m [OK] \033[0m	\033[1;35m ft_printf built successfully!\033[0m"
 
@@ -50,6 +52,9 @@ clean:
 	@rm -f $(OBJS)
 	@$(MAKE) -s -C $(LIBFT_DIR) clean
 	@$(MAKE) -s -C $(FT_PRINTF_DIR) clean
+
+%.o: %.c
+	@$(CC) $(FLAGS) -c $< -o $@
 
 # Clean everything (including compiled libraries and binaries)
 fclean: clean
@@ -61,4 +66,4 @@ fclean: clean
 # Rebuild everything
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft printf

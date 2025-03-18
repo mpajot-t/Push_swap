@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 09:40:12 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/30 10:39:01 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:16:01 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ int	error_format(char *c)
 	int	i;
 
 	i = 0;
-	if (!(c[i] == '+' || c[i] == '-' || (c[i] >= '0' && c[i] <= '9')))
-		return (1);
-	if ((c[i] == '+' || c[i] == '-') && !(c[1] >= '0' && c[1] <= '9'))
-		return (1);
+	if (c[i] == '-' || c[i] == '+')
+	{
+		if (c[i + 1] == '-' || c[i + 1] == '+' || !c[i + 1])
+			return (1);
+		i++;
+	}
 	while (c[i])
 	{
-		if (!(c[i] >= '0' && c[i] <= '9'))
+		if (!ft_isdigit(c[i]))
 			return (1);
 		i++;
 	}
@@ -61,9 +63,11 @@ void	free_lst(t_list_node **lst)
 	*lst = NULL;
 }
 
-void	free_errors(t_list_node **a)
+void	free_errors(t_list_node **a, char **argv, int argc)
 {
 	free_lst(a);
+	if (argc == 2)
+		free_argv(argv);
 	ft_printf("Error\n");
 	exit(1);
 }

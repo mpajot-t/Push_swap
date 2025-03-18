@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:50:11 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/01/30 11:06:02 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/03/18 11:08:50 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ void		print_stack(t_list_node *stack, char *name);
 void		free_lst(t_list_node **lst);
 int			error_dup(t_list_node *list, int nb);
 int			error_format(char *c);
-void		free_errors(t_list_node **a);
+void		free_errors(t_list_node **a, char **argv, int argc);
 void		lstclear(t_list_node **lst);
+void		free_argv(char **argv);
 
 //Algo
-void		init_list_a(t_list_node **list, char **argv);
+void		init_list_a(t_list_node **list, char **argv, int argc);
 void		prep_for_push(t_list_node **lst,
 				t_list_node *top_node, char lst_name);
 void		sort_three(t_list_node **a);
