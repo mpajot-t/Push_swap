@@ -6,7 +6,7 @@
 /*   By: mpajot-t <mpajot-t@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 09:50:14 by mpajot-t          #+#    #+#             */
-/*   Updated: 2025/03/18 11:08:35 by mpajot-t         ###   ########.fr       */
+/*   Updated: 2025/03/24 09:56:55 by mpajot-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		ft_printf("Error/n");
+	if (argc == 1 || (argc == 2 && argv[1][0] == '\0'))
+		return (ft_printf("Error\n"), 1);
 	else if (argc == 2)
 		argv = split(argv[1], ' ');
 	init_list_a(&a, argv, argc);

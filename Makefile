@@ -2,7 +2,7 @@
 NAME = push_swap
 LIBFT_DIR = ./Libft
 FT_PRINTF_DIR = ./printf
-CC = cc -g
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Source files for server and client
